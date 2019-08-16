@@ -8,6 +8,6 @@ class Search extends PixabayAbstract
 {
     public function search($query)
     {
-        return $this->client->get(['q' => $query], true);
+        return $this->client->get(['q' => $query], true)['hits'];
     }
 }

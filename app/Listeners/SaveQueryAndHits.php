@@ -7,7 +7,7 @@ use App\Events\QueryTouched;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SaveQuery
+class SaveQueryAndHits
 {
     /**
      * Handle the event.
@@ -17,8 +17,16 @@ class SaveQuery
      */
     public function handle(QueryTouched $event)
     {
-        auth()->user()->queries()->create([
+        $query = auth()->user()->queries()->create([
             'name' => $event->query
         ]);
+
+        
+        // foreach ($event->hits as $hit) {
+        //     $query->hits()->create([
+        //         'page_url' => $hit->pageURL,
+        //         'image_url' => $hit->largeImageURL
+        //     ]);
+        // }
     }
 }

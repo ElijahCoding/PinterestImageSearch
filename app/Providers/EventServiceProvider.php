@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Events\QueryTouched;
-use App\Listeners\{SaveQuery, SaveHits};
+use App\Listeners\SaveQueryAndHits;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -23,8 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         QueryTouched::class => [
-            SaveQuery::class,
-            SaveHits::class
+            SaveQueryAndHits::class
         ]
     ];
 

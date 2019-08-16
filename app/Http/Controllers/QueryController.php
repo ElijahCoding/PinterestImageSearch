@@ -13,8 +13,8 @@ class QueryController extends Controller
         $query = $request->get('query');
         $hits = (new Search)->search($query);
 
-        event(new QueryTouched($query));
-        
+        event(new QueryTouched($query, $hits));
+
         return $hits;
     }
 }
