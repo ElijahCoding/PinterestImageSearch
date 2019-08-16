@@ -12,18 +12,27 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary" name="button">Поиск</button>
+                                <button type="submit"
+                                        class="btn btn-primary"
+                                        v-if="!loaded">
+                                        Поиск
+                                </button>
+                                <a href="/new-page" class="btn btn-primary" v-else>Далее</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
+            
+            <Hits v-if="hits.length" :hits="hits" />
         </div>
     </div>
 </template>
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
+    import Hits from './partials/Hits'
 
     export default {
         props: ['endpoint'],
@@ -37,6 +46,17 @@
         methods: {
             ...mapActions({
                 search: 'image/search'
+            })
+        },
+
+        components: {
+            Hits
+        },
+
+        computed: {
+            ...mapGetters({
+                hits: 'image/hits',
+                loaded: 'image/loaded'
             })
         }
     }

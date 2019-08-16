@@ -8,14 +8,6 @@ class Search extends GuzzleAbstract
 {
     public function search($query)
     {
-        $results = $this->client->get(['q' => 'nature'], true);
-
-        
-        // if (json_decode($response->getBody()) === null) {
-        //     return null;
-        // } else {
-        //     dd(json_decode($response->getBody()));
-        //     // return json_decode($response->getBody());
-        // }
+        return $this->client->get(['q' => $query], true);
     }
 }
