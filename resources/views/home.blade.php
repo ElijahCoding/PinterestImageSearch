@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <search-form endpoint="{{ route('query.store') }}"/>
-
-    @if (!empty($hits))
-        data
-    @else
-        no data
-    @endif
+    <search-form endpoint="{{ route('query.store') }}" last_query="{{ $last_query }}"/>
 @endsection

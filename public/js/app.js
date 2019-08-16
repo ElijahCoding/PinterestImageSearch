@@ -1899,15 +1899,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['endpoint'],
+  props: ['endpoint', 'last_query'],
   data: function data() {
     return {
       query: ''
     };
   },
+  mounted: function mounted() {},
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     search: 'image/search'
   })),

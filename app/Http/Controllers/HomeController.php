@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $last_query = optional(auth()->user()->queries()->lastQuery()->first())->name;
+        
+        return view('home', compact('last_query'));
     }
 }

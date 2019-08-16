@@ -8,7 +8,11 @@
                     <div class="card-body">
                         <form @submit.prevent="search({query, endpoint})">
                             <div class="form-group">
-                                <input type="text" class="form-control" v-model="query" required>
+                                <input type="text"
+                                       class="form-control"
+                                       v-model="query"
+                                       required
+                                       >
                             </div>
 
                             <div class="text-center">
@@ -34,12 +38,16 @@
     import Hits from './partials/Hits'
 
     export default {
-        props: ['endpoint'],
+        props: ['endpoint', 'last_query'],
 
         data () {
             return {
                 query: ''
             }
+        },
+
+        mounted () {
+
         },
 
         methods: {
