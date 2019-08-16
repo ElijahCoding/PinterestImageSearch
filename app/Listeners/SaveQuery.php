@@ -2,22 +2,13 @@
 
 namespace App\Listeners;
 
+use App\Models\Query;
 use App\Events\QueryTouched;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SaveQuery
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
@@ -26,6 +17,8 @@ class SaveQuery
      */
     public function handle(QueryTouched $event)
     {
-        //
+        auth()->user()->queries()->create([
+            'name' => $event->query
+        ]);
     }
 }

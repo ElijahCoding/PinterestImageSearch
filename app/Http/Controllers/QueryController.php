@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\QueryTouched;
 use Illuminate\Http\Request;
 use App\Services\Pixabay\Search;
 
@@ -9,10 +10,11 @@ class QueryController extends Controller
 {
     public function store(Request $request)
     {
-        $hits = (new Search)->search($request->get('query'));
+        $query = $request->get('query');
+        $hits = (new Search)->search($query);
 
-        // dispatch();
-
+        event(new QueryTouched($query));
+        
         return $hits;
     }
 }

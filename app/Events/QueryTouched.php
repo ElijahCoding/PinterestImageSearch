@@ -14,18 +14,18 @@ class QueryTouched
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $query;
+
+    public $hits;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($query, $hits)
     {
-        //
-    }
-
-    public function handle($event)
-    {
-
+        $this->query = $query;
+        $this->hits = $hits;
     }
 }
