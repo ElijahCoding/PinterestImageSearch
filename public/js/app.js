@@ -1939,6 +1939,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     hit: {
@@ -1963,6 +1965,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Hit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hit */ "./resources/js/components/partials/Hit.vue");
+//
 //
 //
 //
@@ -37364,20 +37367,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card mt-3" }, [
-    _c(
-      "a",
-      {
-        staticClass: "card-img-top",
-        attrs: { href: _vm.hit.pageURL, target: "_blank", title: _vm.hit.tags }
-      },
-      [
-        _c("img", {
+  return _c("div", { staticClass: "col-md-4" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "a",
+        {
           staticClass: "card-img-top",
-          attrs: { src: _vm.hit.largeImageURL, alt: _vm.hit.pageURL }
-        })
-      ]
-    )
+          attrs: {
+            href: _vm.hit.pageURL,
+            target: "_blank",
+            title: _vm.hit.tags
+          }
+        },
+        [
+          _c("img", {
+            staticClass: "card-img-top",
+            attrs: { src: _vm.hit.largeImageURL, alt: _vm.hit.pageURL }
+          })
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -37402,14 +37411,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-8 mt-3" },
-    _vm._l(_vm.hits, function(hit) {
-      return _c("Hit", { key: hit.id, attrs: { hit: hit } })
-    }),
-    1
-  )
+  return _c("div", { staticClass: "col-md-8 mt-3" }, [
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.hits, function(hit) {
+        return _c("Hit", { key: hit.id, attrs: { hit: hit } })
+      }),
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
