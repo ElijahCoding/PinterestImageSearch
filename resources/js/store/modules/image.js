@@ -7,11 +7,11 @@ const mutations = {
 }
 
 const actions = {
-    search ({ commit }, query) {
-
+    search ({ commit, dispatch }, query) {
+        dispatch('saveQuery', query)
     },
 
-    saveQuery () {
+    saveQuery ({}, query) {
         
     }
 }

@@ -50604,15 +50604,21 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 var state = {
   images: []
 };
 var mutations = {};
 var actions = {
   search: function search(_ref, query) {
-    var commit = _ref.commit;
+    var commit = _ref.commit,
+        dispatch = _ref.dispatch;
+    dispatch('saveQuery', query);
   },
-  saveQuery: function saveQuery() {}
+  saveQuery: function saveQuery(_ref2, query) {
+    _objectDestructuringEmpty(_ref2);
+  }
 };
 var getters = {};
 /* harmony default export */ __webpack_exports__["default"] = ({
