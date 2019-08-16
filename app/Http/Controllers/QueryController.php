@@ -11,10 +11,10 @@ class QueryController extends Controller
     public function store(Request $request)
     {
         $query = $request->get('query');
-        $hits = (new Search)->search($query);
+        $data = (new Search)->search($query);
 
-        event(new QueryTouched($query, $hits));
+        event(new QueryTouched($query, $data['hits']));
 
-        return $hits;
+        return $data;
     }
 }
