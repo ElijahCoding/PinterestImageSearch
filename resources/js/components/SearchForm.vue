@@ -3,10 +3,18 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header text-center">Поиск Котов....</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        <form class="" action="index.html" method="post" >
+                            <div class="form-group">
+                                <input type="text" class="form-control" v-model="query">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary" name="button">Поиск</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -16,8 +24,10 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data () {
+            return {
+                query: ''
+            }
         }
     }
 </script>
