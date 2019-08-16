@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSearchQueriesTable extends Migration
+class CreateQueriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSearchQueriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('search_queries', function (Blueprint $table) {
+        Schema::create('queries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->string('name');
@@ -30,6 +30,6 @@ class CreateSearchQueriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('search_queries');
+        Schema::dropIfExists('queries');
     }
 }

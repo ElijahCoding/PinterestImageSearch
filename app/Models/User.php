@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\SearchQuery;
+use App\Models\Query;
 
 class User extends Authenticatable
 {
@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function queries()
     {
-        return $this->hasMany(SearchQuery::class);
+        return $this->hasMany(Query::class);
     }
 }

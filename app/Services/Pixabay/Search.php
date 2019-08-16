@@ -2,9 +2,9 @@
 
 namespace App\Services\Pixabay;
 
-use App\Services\Pixabay\GuzzleAbstract;
+use App\Services\Pixabay\PixabayAbstract;
 
-class Search extends GuzzleAbstract
+class Search extends PixabayAbstract
 {
     public function search($query)
     {

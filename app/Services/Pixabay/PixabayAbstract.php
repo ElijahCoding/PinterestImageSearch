@@ -4,7 +4,7 @@ namespace App\Services\Pixabay;
 
 use Pixabay\PixabayClient;
 
-abstract class GuzzleAbstract
+abstract class PixabayAbstract
 {
     protected $client;
 
