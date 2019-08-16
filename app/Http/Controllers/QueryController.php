@@ -9,6 +9,10 @@ class QueryController extends Controller
 {
     public function store(Request $request)
     {
-        return (new Search)->search($request->get('query'));
+        $hits = (new Search)->search($request->get('query'));
+
+        // dispatch();
+
+        return $hits;
     }
 }
