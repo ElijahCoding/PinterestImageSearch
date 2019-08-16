@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <form @submit.prevent="search({query, endpoint})">
                             <div class="form-group">
-                                <input type="text" class="form-control" v-model="query">
+                                <input type="text" class="form-control" v-model="query" required>
                             </div>
 
                             <div class="text-center">
@@ -17,14 +17,13 @@
                                         v-if="!loaded">
                                         Поиск
                                 </button>
-                                <a href="/new-page" class="btn btn-primary" v-else>Далее</a>
+                                <a href="/" class="btn btn-primary" v-else>Далее</a>
                             </div>
                         </form>
 
                     </div>
                 </div>
             </div>
-            
             <Hits v-if="hits.length" :hits="hits" />
         </div>
     </div>
