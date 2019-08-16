@@ -6,7 +6,7 @@
                     <div class="card-header text-center">Поиск Котов....</div>
 
                     <div class="card-body">
-                        <form class="" action="index.html" method="post" >
+                        <form @submit.prevent="search(query)">
                             <div class="form-group">
                                 <input type="text" class="form-control" v-model="query">
                             </div>
@@ -23,11 +23,19 @@
 </template>
 
 <script>
+    import { mapGetters, mapActions } from 'vuex'
+
     export default {
         data () {
             return {
                 query: ''
             }
+        },
+
+        methods: {
+            ...mapActions({
+                search: 'image/search'
+            })
         }
     }
 </script>
