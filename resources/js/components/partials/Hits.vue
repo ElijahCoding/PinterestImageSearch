@@ -14,6 +14,11 @@
             hits: {
                 required: true,
                 type: Array
+            },
+
+            existingHits: {
+                required: false,
+                type: Array
             }
         },
 

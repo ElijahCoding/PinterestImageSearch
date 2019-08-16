@@ -47,13 +47,17 @@
         },
 
         mounted () {
-
+            this.fetchData()
         },
 
         methods: {
             ...mapActions({
                 search: 'image/search'
-            })
+            }),
+
+            fetchData () {
+                
+            }
         },
 
         components: {

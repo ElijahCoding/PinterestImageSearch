@@ -1912,10 +1912,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       query: ''
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.fetchData();
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     search: 'image/search'
-  })),
+  }), {
+    fetchData: function fetchData() {}
+  }),
   components: {
     Hits: _partials_Hits__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -1983,6 +1987,10 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     hits: {
       required: true,
+      type: Array
+    },
+    existingHits: {
+      required: false,
       type: Array
     }
   },
