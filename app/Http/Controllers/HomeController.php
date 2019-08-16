@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\Fetcher\FetchDataByQuery;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $last_query = optional(auth()->user()->queries()->lastQuery()->first())->name;
-        
-        return view('home', compact('last_query'));
+        $data = (new FetchDataByQuery)->fetch();
+
+        return view('home', compact('data'));
     }
 }
