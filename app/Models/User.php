@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function search_queries()
+    public function queries()
     {
         return $this->hasMany(SearchQuery::class);
     }

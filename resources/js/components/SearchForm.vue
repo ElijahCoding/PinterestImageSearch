@@ -6,7 +6,7 @@
                     <div class="card-header text-center">Поиск Котов....</div>
 
                     <div class="card-body">
-                        <form @submit.prevent="search(query)">
+                        <form @submit.prevent="search({query, endpoint})">
                             <div class="form-group">
                                 <input type="text" class="form-control" v-model="query">
                             </div>
@@ -26,6 +26,8 @@
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
+        props: ['endpoint'],
+
         data () {
             return {
                 query: ''

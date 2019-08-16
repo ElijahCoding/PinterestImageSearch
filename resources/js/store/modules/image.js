@@ -7,12 +7,15 @@ const mutations = {
 }
 
 const actions = {
-    search ({ commit, dispatch }, query) {
-        dispatch('saveQuery', query)
+    search ({ commit, dispatch }, data) {
+        dispatch('saveQuery', data)
     },
 
-    saveQuery ({}, query) {
-        
+    saveQuery ({}, { query, endpoint }) {
+        axios.post(endpoint, {
+            query
+        })
+
     }
 }
 

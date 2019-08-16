@@ -1893,6 +1893,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['endpoint'],
   data: function data() {
     return {
       query: ''
@@ -37192,7 +37193,10 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.search(_vm.query)
+                    return _vm.search({
+                      query: _vm.query,
+                      endpoint: _vm.endpoint
+                    })
                   }
                 }
               },
@@ -50611,13 +50615,19 @@ var state = {
 };
 var mutations = {};
 var actions = {
-  search: function search(_ref, query) {
+  search: function search(_ref, data) {
     var commit = _ref.commit,
         dispatch = _ref.dispatch;
-    dispatch('saveQuery', query);
+    dispatch('saveQuery', data);
   },
-  saveQuery: function saveQuery(_ref2, query) {
+  saveQuery: function saveQuery(_ref2, _ref3) {
     _objectDestructuringEmpty(_ref2);
+
+    var query = _ref3.query,
+        endpoint = _ref3.endpoint;
+    axios.post(endpoint, {
+      query: query
+    });
   }
 };
 var getters = {};
