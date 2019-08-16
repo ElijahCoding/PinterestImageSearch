@@ -34,4 +34,7 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'pixabay' => [
+        'token' => env('PIXABAY_ACCESS_TOKEN')
+    ]
 ];
