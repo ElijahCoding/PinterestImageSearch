@@ -30,7 +30,7 @@ const actions = {
         }
     },
 
-    async getLastQuery ({ commit }) {
+    async getLastQuery ({ commit }, data) {
         
     }
 }

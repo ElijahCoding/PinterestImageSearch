@@ -1918,13 +1918,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['endpoint', 'last_query'],
+  props: ['endpoint', 'last_query_endpoint'],
   data: function data() {
     return {
       query: ''
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.lastQuery(this.last_query_endpoint);
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     search: 'query/search',
     lastQuery: 'query/getLastQuery'
@@ -51741,7 +51743,7 @@ var actions = {
   getLastQuery: function () {
     var _getLastQuery = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3, data) {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -51757,7 +51759,7 @@ var actions = {
       }, _callee2);
     }));
 
-    function getLastQuery(_x3) {
+    function getLastQuery(_x3, _x4) {
       return _getLastQuery.apply(this, arguments);
     }
 

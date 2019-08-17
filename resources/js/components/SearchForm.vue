@@ -38,7 +38,7 @@
     import Hits from './partials/Hits'
 
     export default {
-        props: ['endpoint', 'last_query'],
+        props: ['endpoint', 'last_query_endpoint'],
 
         data () {
             return {
@@ -47,7 +47,7 @@
         },
 
         mounted () {
-
+            this.lastQuery(this.last_query_endpoint)
         },
 
         methods: {
