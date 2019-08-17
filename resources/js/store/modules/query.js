@@ -19,20 +19,19 @@ const mutations = {
 }
 
 const actions = {
-    search ({ commit, dispatch }, data) {
-        dispatch('saveQuery', data)
-    },
+    async search ({ commit, dispatch }, { query, endpoint }) {
+        commit('setQuery', query)
 
-    saveQuery ({ commit }, { query, endpoint }) {
-        commit('setQuery', query);
+        const data = await axios.post(endpoint, { query })
 
-        axios.post(endpoint, {
-            query
-        }).then(data => {
+        if (data) {
             commit('setLoaded', true)
             commit('setHits', data.data.hits)
-        })
+        }
+    },
 
+    async getLastQuery ({ commit }) {
+        
     }
 }
 

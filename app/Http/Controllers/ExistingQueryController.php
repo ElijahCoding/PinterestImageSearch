@@ -9,6 +9,6 @@ class ExistingQueryController extends Controller
 {
     public function index()
     {
-        $data = (new FetchDataByQuery)->fetch();
+        return (new FetchDataByQuery)->fetch();
     }
 }

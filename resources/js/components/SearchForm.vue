@@ -47,17 +47,14 @@
         },
 
         mounted () {
-            this.fetchData()
+
         },
 
         methods: {
             ...mapActions({
-                search: 'image/search'
-            }),
-
-            fetchData () {
-                
-            }
+                search: 'query/search',
+                lastQuery: 'query/getLastQuery'
+            })
         },
 
         components: {
@@ -66,8 +63,8 @@
 
         computed: {
             ...mapGetters({
-                hits: 'image/hits',
-                loaded: 'image/loaded'
+                hits: 'query/hits',
+                loaded: 'query/loaded'
             })
         }
     }

@@ -15,10 +15,6 @@
                 required: true,
                 type: Object
             }
-        },
-
-        mounted () {
-            console.log(this.hit);
         }
     }
 </script>
