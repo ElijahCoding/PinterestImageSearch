@@ -1872,8 +1872,16 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _partials_Hits__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/Hits */ "./resources/js/components/partials/Hits.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _partials_Hits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partials/Hits */ "./resources/js/components/partials/Hits.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1915,28 +1923,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['endpoint', 'last_query_endpoint'],
   data: function data() {
     return {
-      query: ''
+      query: '',
+      existing_hits: []
     };
   },
   mounted: function mounted() {
-    this.lastQuery(this.last_query_endpoint);
+    this.fetchExistingData();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
     search: 'query/search',
-    lastQuery: 'query/getLastQuery'
-  })),
+    getLastQuery: 'query/getLastQuery'
+  }), {
+    fetchExistingData: function () {
+      var _fetchExistingData = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.getLastQuery();
+
+              case 2:
+                if (!_context.sent) {
+                  _context.next = 5;
+                  break;
+                }
+
+                localStorage.getItem('query') ? this.query = localStorage.getItem('query') : this.query = '';
+                localStorage.getItem('hits') ? this.existing_hits = JSON.parse(localStorage.getItem('hits')) : this.existing_hits = [];
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function fetchExistingData() {
+        return _fetchExistingData.apply(this, arguments);
+      }
+
+      return fetchExistingData;
+    }()
+  }),
   components: {
-    Hits: _partials_Hits__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Hits: _partials_Hits__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     hits: 'query/hits',
-    loaded: 'query/loaded'
+    loaded: 'query/loaded',
+    hasError: 'query/hasError'
   }))
 });
 
@@ -1994,10 +2040,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     hits: {
-      required: true,
-      type: Array
-    },
-    existingHits: {
       required: false,
       type: Array
     }
@@ -38097,7 +38139,11 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm.hits.length ? _c("Hits", { attrs: { hits: _vm.hits } }) : _vm._e()
+        _c("Hits", {
+          attrs: { hits: _vm.hits.length ? _vm.hits : _vm.existing_hits }
+        }),
+        _vm._v(" "),
+        _vm.hasError ? _c("p", [_vm._v("Неправильный Запрос")]) : _vm._e()
       ],
       1
     )
@@ -51687,7 +51733,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   query: '',
   hits: [],
-  loaded: false
+  loaded: false,
+  hasError: false
 };
 var mutations = {
   setQuery: function setQuery(state, data) {
@@ -51698,6 +51745,9 @@ var mutations = {
   },
   setLoaded: function setLoaded(state, data) {
     state.loaded = data;
+  },
+  setError: function setError(state, data) {
+    state.hasError = data;
   }
 };
 var actions = {
@@ -51705,7 +51755,8 @@ var actions = {
     var _search = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref, _ref2) {
-      var commit, dispatch, query, endpoint, data;
+      var commit, dispatch, query, endpoint, _ref3, data;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -51719,14 +51770,17 @@ var actions = {
               });
 
             case 5:
-              data = _context.sent;
+              _ref3 = _context.sent;
+              data = _ref3.data;
 
-              if (data) {
+              if (data.hits.length) {
                 commit('setLoaded', true);
-                commit('setHits', data.data.hits);
+                commit('setHits', data.hits);
+              } else {
+                commit('setError', true);
               }
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -51743,15 +51797,29 @@ var actions = {
   getLastQuery: function () {
     var _getLastQuery = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3, data) {
-      var commit;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref4) {
+      var commit, _ref5, data;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref3.commit;
+              commit = _ref4.commit;
+              _context2.next = 3;
+              return axios.get('/query/existing');
 
-            case 1:
+            case 3:
+              _ref5 = _context2.sent;
+              data = _ref5.data;
+
+              if (data.query && data.hits.length) {
+                localStorage.setItem('query', data.query);
+                localStorage.setItem('hits', JSON.stringify(data.hits));
+              }
+
+              return _context2.abrupt("return", true);
+
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -51759,7 +51827,7 @@ var actions = {
       }, _callee2);
     }));
 
-    function getLastQuery(_x3, _x4) {
+    function getLastQuery(_x3) {
       return _getLastQuery.apply(this, arguments);
     }
 
@@ -51775,6 +51843,9 @@ var getters = {
   },
   loaded: function loaded(state) {
     return state.loaded;
+  },
+  hasError: function hasError(state) {
+    return state.hasError;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -12,14 +12,9 @@
     export default {
         props: {
             hits: {
-                required: true,
-                type: Array
-            },
-
-            existingHits: {
                 required: false,
                 type: Array
-            }
+            },
         },
 
         components: {

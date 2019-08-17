@@ -16,8 +16,9 @@ class CreateHitsTable extends Migration
         Schema::create('hits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('query_id')->unsigned()->index();
-            $table->string('page_url');
-            $table->string('image_url');
+            $table->string('pageURL');
+            $table->text('tags');
+            $table->string('largeImageURL');
             $table->timestamps();
 
             $table->foreign('query_id')->references('id')->on('queries')->onDelete('cascade');

@@ -8,15 +8,13 @@ class FetchDataByQuery
 {
     public function fetch()
     {
-        if ($query = auth()->user()->queries()->lastQuery()->first()->name) {
-            return [
-                'query' => $query,
-                'hits' => (new FetchHits($query))->hits()
-            ];
-        } else {
-            return [
-                'message' => 'no data.'
-            ];
+        if ($query = auth()->user()->queries()->lastQuery()->first()) {
+            if ($query) {
+                return [
+                    'query' => $query->name,
+                    'hits' => (new FetchHits($query->name))->hits()
+                ];
+            }
         }
     }
 }

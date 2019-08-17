@@ -23,8 +23,9 @@ class SaveQueryAndHits
 
         foreach ($event->hits as $hit) {
             $query->fresh()->hits()->create([
-                'page_url' => $hit['pageURL'],
-                'image_url' => $hit['largeImageURL']
+                'pageURL' => $hit['pageURL'],
+                'largeImageURL' => $hit['largeImageURL'],
+                'tags' => $hit['tags']
             ]);
         }
     }

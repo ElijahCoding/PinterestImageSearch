@@ -28,7 +28,8 @@
                     </div>
                 </div>
             </div>
-            <Hits v-if="hits.length" :hits="hits" />
+            <Hits :hits="hits.length ? hits : existing_hits"/>
+            <p v-if="hasError">Неправильный Запрос</p>
         </div>
     </div>
 </template>
@@ -42,19 +43,27 @@
 
         data () {
             return {
-                query: ''
+                query: '',
+                existing_hits: []
             }
         },
 
         mounted () {
-            this.lastQuery(this.last_query_endpoint)
+            this.fetchExistingData()
         },
 
         methods: {
             ...mapActions({
                 search: 'query/search',
-                lastQuery: 'query/getLastQuery'
-            })
+                getLastQuery: 'query/getLastQuery'
+            }),
+
+            async fetchExistingData () {
+                if (await this.getLastQuery()) {
+                    localStorage.getItem('query') ? this.query = localStorage.getItem('query') : this.query = ''
+                    localStorage.getItem('hits') ? this.existing_hits = JSON.parse(localStorage.getItem('hits')) : this.existing_hits = []
+                }
+            }
         },
 
         components: {
@@ -64,7 +73,8 @@
         computed: {
             ...mapGetters({
                 hits: 'query/hits',
-                loaded: 'query/loaded'
+                loaded: 'query/loaded',
+                hasError: 'query/hasError'
             })
         }
     }
